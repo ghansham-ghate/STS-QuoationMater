@@ -143,7 +143,7 @@
  <div class="btn-align pull-right">
   <button *ngIf="!showHead" class="btn" type="submit"  [disabled]="reactForm.invalid" (click)="submitData(reactForm.value)">Next</button>
 </div>  
-
+<app-terms-and-conditions (sendData)="setTermsAndCondition($event)" [updateTerms]="termAndConditionString"></app-terms-and-conditions>
   <!-- Update Item -->
   <table *ngIf="showHead" class="table" id="mytable" style="margin-top: 50px;">
     <thead class="thead-light">

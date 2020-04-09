@@ -49,19 +49,30 @@ export class QuotationClass{
      {
      return this.quotation;
     }
-    public setTempQuotation(quotation,cust_id,region_id,quoatationNumber)
+    public setTempQuotation(quotation,cust_id,region_id,quoatationNumber,termsAndcondition)
     {
-    console.log(quotation);
+      console.log(quotation);
+      let condition="";
+      for(let i=0;i<termsAndcondition.length-1;i++)
+      {
+         condition=condition+termsAndcondition[i].value+",";
+      }
+      condition=condition+termsAndcondition[termsAndcondition.length-1].value+",";
       this.quotation=quotation;
       this.quotation.nvcharQuotation_no=quoatationNumber;
-    
       this.quotation.intRegion_id=region_id; 
       this.quotation.intCust_id=cust_id;
-      
+      this.quotation.NvcharTermsandCond=condition;
      }
      public setQuotation(quotation)
      {
       this.quotation=quotation;
      }
-    
+     public setTempQuotationForUpdate(quotation,cust_id,region_id,quoatationNumber)
+     {
+       this.quotation=quotation;
+       this.quotation.nvcharQuotation_no=quoatationNumber;
+       this.quotation.intRegion_id=region_id; 
+       this.quotation.intCust_id=cust_id;
+     }
 }

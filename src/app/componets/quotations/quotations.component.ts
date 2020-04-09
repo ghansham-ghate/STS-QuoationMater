@@ -46,6 +46,8 @@ export class QuotationsComponent implements OnInit {
   dataSaved = false;  
   massage = null; 
   quotationDetailsWithitem:QuotationDetail[]=[];
+  termAndCondition=[];
+  termAndConditionString:string;
   regions:Region[];
   itemCategory:ItemCategory[];
   items:Item[];
@@ -129,18 +131,41 @@ export class QuotationsComponent implements OnInit {
       }
      }
 
-     this.quotationservice.setTempQuotation(this.reactForm.value,Cust_id,Region_id,this.quotationNumber);
-     if (this.router.navigateByUrl('/product/1')) {
-      this.showHead = false;
-    } else {
-      this.showHead = true;
-    }
+     if(this.checkTermsAndCondition())
+     {
+      this.quotationservice.setTempQuotation(this.reactForm.value,Cust_id,Region_id,this.quotationNumber,this.termAndCondition);
+      if (this.router.navigateByUrl('/product/1')) {
+        this.showHead = false;
+      } else {
+        this.showHead = true;
+      }
+     }
+     else{
+      this.toastr.success('One or more conditions empty. check terms and conditions!', ' ',{positionClass: 'toast-bottom-right'});
+     }
+
    
 
      
   }
 
-
+  setTermsAndCondition(data)
+  {
+     this.termAndCondition=data;
+  }
+  checkTermsAndCondition():boolean
+  {
+    let val=true;
+    for(let i=0;i<this.termAndCondition.length;i++)
+    {
+      let condition=this.termAndCondition[i];
+      if(condition.value=="")
+      {
+        val=false;
+      }
+    }
+    return val;
+  } 
   ngOnInit() {
   }
  
@@ -343,7 +368,7 @@ console.log("item details in quotation",this.quotationDetailsWithitem)
       }
      }
      
-  this.quotationservice.setTempQuotation(this.reactForm.value,Cust_id,Region_id,this.reactForm.controls["nvcharQuotation_no"].value);
+  this.quotationservice.setTempQuotationForUpdate(this.reactForm.value,Cust_id,Region_id,this.reactForm.controls["nvcharQuotation_no"].value);
   let qout:Quotation=this.quotationservice.quotation;
   qout.NvcharDescription=detailString;
   this.billedQuotation=qout;
@@ -390,7 +415,7 @@ showQuotationReceipt()
         Region_id=this.regions[i].intRegion_id;
       }
      }
-  this.quotationservice.setTempQuotation(this.reactForm.value,Cust_id,Region_id,this.reactForm.controls["nvcharQuotation_no"].value);
+     this.quotationservice.setTempQuotationForUpdate(this.reactForm.value,Cust_id,Region_id,this.reactForm.controls["nvcharQuotation_no"].value);
   var detailString=this.reactForm.controls['phone'].value+","+this.reactForm.controls['contactName'].value+","+this.reactForm.controls['email'].value
   let qout:Quotation=this.quotationservice.quotation;
   qout.NvcharDescription=detailString;
