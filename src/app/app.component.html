@@ -1,0 +1,53 @@
+<header>  
+<nav class="navbar navbar-expand-lg navbar-light" >
+  <li class="navbar-brand"  href="#"><img src="assets/images/size_control_logo.webp" alt="" width="146px"></li>
+    <div ng-controller="AdminController" class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav">
+      
+      <li  class="nav-item active">
+        <a class="nav-link" *ngIf="!showHead" style="font-family: Arial, Helvetica, sans-serif;" routerLink="quotation">Quotation</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" *ngIf="!showHead" style="font-family: Arial, Helvetica, sans-serif;" routerLink="cust" >Customer</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" *ngIf="!showHead" style="font-family: Arial, Helvetica, sans-serif;" routerLink="report">Reports</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" *ngIf="!showHead" style="font-family: Arial, Helvetica, sans-serif;" routerLink="po">PO Feed</a>
+      </li>
+    
+      <li  class="nav-item active">
+        <a class="nav-link" *ngIf="!showHead" style="font-family: Arial, Helvetica, sans-serif;" routerLink="region">Region</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" *ngIf="!showHead" style="font-family: Arial, Helvetica, sans-serif;" routerLink="product">Product</a>
+      </li>
+
+      
+      </ul>
+  </div>
+  
+  
+  <a  class="nav-link nav-item active " style="font-family: Arial, Helvetica, sans-serif;" *ngIf="showHead"  routerLink="login">Log In</a>
+  <a class="nav-link nav-item active" style="font-family: Arial, Helvetica, sans-serif;" *ngIf="showHead" routerLink="registration">Registration</a>
+  <a class="nav-link nav-item active" style="font-family: Arial, Helvetica, sans-serif;" *ngIf="!showHead" (click)="logout()" style="cursor: pointer;" >Logout</a>
+ 
+  </nav>
+  
+
+
+
+
+</header>
+
+<body>
+  <router-outlet></router-outlet>
+</body>
+
+<!-- <app-header *ngIf="showHead"></app-header> *ngIf="isLoggedIn"-->
+
+
+<footer class="footer">
+  <p>@2020 Source tech system.All rights reserved</p>
+</footer>

@@ -1,0 +1,50 @@
+
+   <div class="background-img" style="background-image: url(assets/images/size_control.jpg);" >      
+    <div class="container">
+      <div class="main-shadow-box">
+              <form [formGroup]="reactForm" (ngSubmit)="onSubmit(reactForm.value)" >
+               <h5 class="form-title text-center">LogIn </h5>
+              <div class="form-contain">
+               <div *ngIf="!isCreatePassword" class="form-label-group">
+                 <label for="uname">Username</label><span id="username"></span>
+                   <input type="text" id="uname" class="form-control" #uname formControlName="nvcharUserName" placeholder="Enter User name" [ngClass]="{'is-invalid':reactForm.get('nvcharUserName').touched && reactForm.get('nvcharUserName').invalid}" >  
+                   <div class="invalid-feedback">
+                    <div>User Name is required</div>
+                    </div>
+                  </div>
+   
+                 <div class="form-label-group" *ngIf="!isForgotPassword">
+                 <label for="inputPassword">Password</label>
+                   <input type="password" id="pass" class="form-control" #pass formControlName="nvcharPassword" placeholder="Enter Password" [ngClass]="{'is-invalid':reactForm.get('nvcharPassword').touched && reactForm.get('nvcharPassword').invalid}">
+                   <div class="invalid-feedback">
+                    <div>Password is required</div>
+                    </div>
+                  </div>
+                  <div class="form-label-group" *ngIf="isCreatePassword">
+                    <label for="inputPassword">Create New Password</label>
+                      <input type="password"   class="form-control"  (input)="setTempPassword($event.target.value)" placeholder="Enter Password" #passwordVal >
+                      <div class="invalid-feedback">
+                       <div>Password is required</div>
+                       </div>
+                     </div>
+              <br>
+                 <button *ngIf="!isForgotPassword" class="btn" type="submit" style="color: #ffffff;" [disabled]="reactForm.invalid" >LogIn</button>
+              
+                 
+                 <a *ngIf="!isForgotPassword" href="javascript:void(0)" (click)="this.isForgotPassword= true;" >Forgot Password?</a>
+                </div>
+                </form>
+                <div class="button-contain">
+                  <div class="pull-right-btn">
+                <button *ngIf="isForgotPassword && !isCreatePassword" style="margin: 5px;"  (click)="resetPassword(user)"  class="btn" [disabled]="reactForm.invalid" type="submit" >Submit</button>
+                 <button *ngIf="isForgotPassword && !isCreatePassword"   (click)="backToLogin()" class="btn-cancle" type="submit" >Cancel</button>
+                </div>
+                <div class="pull-right-btn-update">
+                 <button *ngIf="isCreatePassword"   class="btn" style="margin: 5px;" (click)="changePassword()" type="submit" >Update Password</button>
+                <button *ngIf="isCreatePassword && isForgotPassword"   class="btn-cancle" (click)="backToLogin()" type="submit" >Cancel</button>
+              </div>
+              </div>
+              </div>
+     </div>
+    </div>
+  

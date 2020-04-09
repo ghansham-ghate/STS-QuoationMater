@@ -1,0 +1,149 @@
+.stripe{
+  width: 100%; height: 90px;
+  background:linear-gradient(to right, #33b8e8 0%,#3dceda 100%);
+}
+img{
+  cursor: pointer;
+}
+.btn {
+  background-color: #ff009d;
+  padding: 4px 10px 4px 10px;
+  font-size: 12px;
+  text-transform: uppercase;
+  color: #ffffff;
+  font-weight: 600;
+  }
+.pad-top-bot{
+padding-top: 10px;
+padding-bottom: 10px;
+}
+.form-control {
+  padding: 4px 10px 4px 10px !important;
+  font-size: 13px !important;
+  height: 28px !important;
+}
+.quotation-form{
+  width: 100%;
+  top: -30px;
+  position: relative;
+  
+   
+}
+.main-shadow-boxform{
+  background-color: #ffffff;
+  width: 100%;
+  top: 48px;
+  position: relative;
+  padding: 10px;
+  box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
+  border-radius: 6px;
+  height: 80vh;
+}
+.breadcrumb-item + .breadcrumb-item::before {
+  color: #ffffff;
+  content: ">";
+
+}
+.breadcrumb{
+  border: none;
+  cursor: pointer;
+  background:linear-gradient(#3fbeec 50%,#33b8e8 0%);  
+  padding: 0px;
+  margin: 0px;
+  color: #ffffff;
+  position: relative;
+  width: max-content;
+  left: 40%;
+  bottom: 50px;
+}
+
+ .form-title {
+  font-size: 17px;
+  font-weight: 600;
+  background-color: #f5f9fa;
+  
+ }      
+label{
+  padding-top: 10px;
+  padding-bottom: 7px;
+  font-size: 14px;
+}
+.form-label-group  {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 6px;
+  width: 350px;
+}
+   
+.form-control{
+  padding-top: 10px;
+  padding-bottom: 10px;
+}  
+     
+.custom-select {
+  padding: 4px 10px 4px 10px !important;
+  font-size: 13px !important;
+  height: 28px !important;
+} 
+      
+.table td, .table th{
+  padding: 5px;
+}
+table {
+  border-collapse: collapse;
+  width: 100%;
+  padding: 300px;
+  top: 10px;
+}
+        
+th, td {
+    padding: 10px;
+}
+table, td, th {  
+          border: 1px solid #e4edef;
+          text-align: left;
+}
+thead,th{
+   font-size: 12px;
+   text-transform: uppercase;
+   font-weight: 600;
+}
+tbody,td{
+  font-size: 13px;
+  background-color: #ffffff;
+
+} 
+.thead-color{
+ background-color: #f5f9fa;
+}
+       
+    
+ .container{
+  width: 100%;
+  top: -90px;
+  position: relative;
+ }
+
+
+
+ .main-shadow-box{
+ background-color: #ffffff;
+ width: 100%;
+ position: relative;
+ padding: 10px;
+ box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
+ border-radius: 6px;
+ height: 100vh;
+ 
+}
+.pagination1{
+  font-size: 12px;
+}
+.ngx-pagination {
+  margin-top: 10px !important;
+  
+}
+.table thead th {
+  vertical-align: bottom;
+  border-bottom: 1px solid #dee2e6;
+}

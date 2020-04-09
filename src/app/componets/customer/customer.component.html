@@ -1,0 +1,94 @@
+<div  class="stripe">
+
+</div>
+<div class="container-quotation">
+  <div class="main-shadow-box">
+<div class="row">
+  <div class="col-3 border-right">
+    <form [formGroup]="reactForm" (ngSubmit)="AddCustomer(reactForm.value)" >
+       <h4 class="card-title form-title">Customer Form</h4>
+      
+        
+       <div class="form-label-group">
+         <label for="uname">Customer Name</label>
+           <input type="text" id="name" class="form-control" formControlName="nvcharCust_name" placeholder="Enter name" [ngClass]="{'is-invalid':reactForm.get('nvcharCust_name').touched && reactForm.get('nvcharCust_name').invalid}" >  
+               <div class="invalid-feedback">
+                  <div>Name is required</div>
+                </div>
+       </div>
+     
+         <div class="form-label-group">
+           <label for="inputPassword">Customer Address</label>
+               <input type="text" id="inputadd" class="form-control" formControlName="nvcharCust_address" placeholder="Enter Address" [ngClass]="{'is-invalid':reactForm.get('nvcharCust_address').touched && reactForm.get('nvcharCust_address').invalid}">
+                 <div class="invalid-feedback">
+                    <div>Address is required</div>
+                    </div>
+            </div>
+  
+                           
+                     <div class="form-label-group">
+                   <label for="inputPassword">Customer Phone</label>
+                     <input type="text" id="inputPassword" class="form-control" formControlName="nvcharCust_phone" placeholder="Enter Name" [ngClass]="{'is-invalid':reactForm.get('nvcharCust_phone').touched && reactForm.get('nvcharCust_phone').invalid}">
+                     <div class="invalid-feedback">
+                      <div>Phone  is required</div>
+                      </div>
+                    </div>
+     
+                    <div class="form-label-group">
+                   <label for="inputPassword">Customer Email</label>
+                     <input type="text" id="input" class="form-control" formControlName="nvcharCust_email" placeholder="Enter Email" [ngClass]="{'is-invalid':reactForm.get('nvcharCust_email').touched && reactForm.get('nvcharCust_email').invalid}">
+                     <div class="invalid-feedback">
+                      <div>Email is required</div>
+                      </div>
+                    </div>
+         
+           
+         <div class="btn-align">
+          <button class="btn-cancle"  type="submit"  (click)="clearForm()">Cancle</button>
+          <button class="btn mar-left" [disabled]="reactForm.invalid" type="submit">Submit</button>
+         </div>
+        
+       </form>
+      </div>
+  <div class="col-9">
+    <div class="pull-right">
+    <div class="col-12 pad-0px">
+   
+     <div class="col pad-0px search-mar">
+      <input type="text" placeholder="Search Of Customer Name" class="form-control"   #customerName  name="search"> 
+    </div> 
+  </div>
+     </div>
+   <div>
+  <table class="table">
+    <thead class="thead-color">
+      <tr>
+        <th scope="col">Customer Name</th> 
+        <th scope="col">Customer Address</th>
+        <th scope="col">Customer Phone</th>
+        <th scope="col">Customer Email</th>
+        <th scope="col">Edit</th>
+        <th scope="col">Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let c of customer |filter:searchTerm | paginate:{itemsPerPage:5, currentPage:p};index as i " >
+        <td>{{c.nvcharCust_name}}</td>
+        <td>{{c.nvcharCust_address}}</td>
+        <td>{{c.nvcharCust_phone}}</td>
+        <td>{{c.nvcharCust_email}}</td>
+        <td><img src="assets\images\edit.svg" (click)="UpdateData(c)" alt="Edit"  height="16px" width="16px"></td>
+        <td><img src="assets\images\delete.svg" (click)=" DeleteCustomer(c)" alt="Delete"  height="16px" width="16px"></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="pull-right ngx-pagination">
+<pagination-controls class="pagination1" (pageChange)="p =$event"></pagination-controls>
+</div>
+ 
+</div>
+</div>
+</div>
+
+</div>

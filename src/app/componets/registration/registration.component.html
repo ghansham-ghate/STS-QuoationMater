@@ -1,0 +1,45 @@
+
+   <div class="background-img" style="background-image: url(assets/images/size_control.jpg);" >      
+    <div class="container">
+      <div class="main-shadow-box">
+        <form [formGroup]="reactForm" (ngSubmit)="AddUser(reactForm.value)">        
+           <h5 class="form-title text-center">Registration Form</h5>
+               <div class="form-contain">
+               <div class="form-label-group">
+                 <label for="uname">User Name</label>
+                   <input type="text" id="uname" class="form-control"  formControlName="nvcharUserName" placeholder="Enter User name" [ngClass]="{'is-invalid':reactForm.get('nvcharUserName').touched && reactForm.get('nvcharUserName').invalid}" >  
+                   <div class="invalid-feedback">
+                    <div>User Name is required</div>
+                    </div>
+                  </div>
+   
+                 <div class="form-label-group">
+                 <label for="inputPassword">Password</label>
+                   <input type="password" id="pass" class="form-control"  formControlName="nvcharPassword" placeholder="Enter Password" [ngClass]="{'is-invalid':reactForm.get('nvcharPassword').touched && reactForm.get('nvcharPassword').invalid}">
+                   <div class="invalid-feedback">
+                    <div>Password is required</div>
+                    </div>
+                  </div>
+                  <div class="form-label-group">
+                    <label for="Email">Email</label>
+                      <input type="Email" id="Email" class="form-control"  formControlName="nvcharEmail" placeholder="Enter Email" [ngClass]="{'is-invalid':reactForm.get('nvcharEmail').touched && reactForm.get('nvcharEmail').invalid}">
+                      <div class="invalid-feedback">
+                       <div>Email is required</div>
+                       </div>
+                     </div>
+                     <div class="form-label-group">
+                        <label for="Role">Role</label>
+                          <input type="Role" id="Role" class="form-control"  formControlName="nvcharRole" placeholder="Enter Role" [ngClass]="{'is-invalid':reactForm.get('nvcharRole').touched && reactForm.get('nvcharRole').invalid}">
+                          <div class="invalid-feedback">
+                           <div>Role is required</div>
+                           </div>
+                         </div>   
+                         <!-- <span id="username"></span> -->
+              <br>
+                 <button class="btn" style=" color: #ffffff;" type="submit" >Registration</button>
+             </div>
+     </form>
+</div>
+</div>
+</div>
+     

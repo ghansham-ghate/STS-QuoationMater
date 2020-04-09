@@ -1,0 +1,98 @@
+<div  class="stripe">
+
+</div>
+<div class="container">
+<div class="main-shadow-box"> 
+<div class="row">
+    <div class="col-3 border-right">
+        <form [formGroup]="reactForm">
+         <h4 class="card-title form-title">Region Form</h4>
+                      
+            <div class="form-label-group">
+           <label for="uname">Region Name</label>
+             <input type="text" id="rname" class="form-control" formControlName="nvcharRegion_name" placeholder="Enter Region name" [ngClass]="{'is-invalid':reactForm.get('nvcharRegion_name').touched && reactForm.get('nvcharRegion_name').invalid}" >  
+             <div class="invalid-feedback">
+              <div>Region Name is required</div>
+              </div>
+            </div>
+           
+             <div class="form-label-group">
+             <label for="inputPassword">Region Code</label>
+               <input type="text" id="inputadd" class="form-control" formControlName="nvcharRegion_code" placeholder="Enter Region Code" [ngClass]="{'is-invalid':reactForm.get('nvcharRegion_code').touched && reactForm.get('nvcharRegion_code').invalid}">
+               <div class="invalid-feedback">
+                <div>Region Code is required</div>
+                </div>
+              </div>
+             
+             <div class="form-label-group">
+               <label for="inputPassword">Region Domestic International</label>
+                 <!-- <input type="text" id="inputPassword" class="form-control" formControlName="Region_domestic_international" placeholder="Enter Region Domestic" [ngClass]="{'is-invalid':reactForm.get('Region_domestic_international').touched && reactForm.get('Region_domestic_international').invalid}"> -->
+                 <select class="custom-select" formControlName="ynRegion_domestic_international" id="select"  [ngClass]="{'is-invalid':reactForm.get('ynRegion_domestic_international').touched && reactForm.get('ynRegion_domestic_international').invalid}">
+                  <option value="">Choose Region Domestic Internation</option>
+                  <option value="true" >Domestic</option>
+                  <option value="false">International</option>
+                </select>
+                 <div class="invalid-feedback">
+                  <div>Region Domestic  is required</div>
+                  </div>	
+                </div>
+           
+        <div class="btn-align">              
+         <button class="btn-cancle" (click)="clearForm()"  >Cancel</button>       
+         <button class="btn mar-left" [disabled]="reactForm.invalid" (click)="AddRegion(reactForm.value)" type="submit">Submit</button>
+        </div>
+        </form>
+     </div>
+
+
+  <div class="col-9">
+    <div class="pull-right">
+      <div class="col-12 pad-0px">
+      <div class="col pad-0px search-mar">
+        <input type="text" placeholder="Search Of Region Name" class="form-control"   name="search">
+      </div> 
+    </div>
+       </div>
+      <!-- <div class="row">
+        <div class="col search-text">
+         <input type="text" placeholder="Search Of Region Name" class="form-control" [(ngModel)]="searchText"  name="search"> 
+       </div> 
+       <div class="col"></div>
+       <div class="col"></div>
+       </div> -->
+     
+  <table class="table">
+      <thead class="head-color">
+        <tr>
+          <th scope="col">Region Name</th> 
+          <th scope="col">Region Code</th>
+          <th scope="col">Region_Domestic</th>
+          <th scope="col">Edit</th>
+          <th scope="col">Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let r of region |filter:searchTerm | paginate:{itemsPerPage:5, currentPage:p}; index as i"  >
+          <td>{{r.nvcharRegion_name}}</td>
+          <td>{{r.nvcharRegion_code}}</td>
+          <td>{{r.ynRegion_domestic_international}}</td>
+          <td><img src="assets\images\edit.svg" (click)="UpdateRegion(r)" alt="edit" height="16px" width="16px"></td>
+          <td><img src="assets\images\delete.svg" (click)=" DeleteRegion(r)"  alt="delete" height="16px" width="16px"></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="pull-right ngx-pagination">
+    <pagination-controls class="pagination1" (pageChange)="p =$event"></pagination-controls>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+
+

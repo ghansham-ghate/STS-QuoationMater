@@ -1,0 +1,73 @@
+.main-shadow-box{
+  background-color: #ffffff;
+  width:30%;
+  position: relative;
+  left: 30%;
+  padding: 10px;
+  top: 60px;
+  box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
+  border-radius: 6px;
+  height: auto;
+}  
+
+label{
+  padding-top: 0px;
+  padding-bottom: 0px;
+  font-size: 13px;
+}
+.form-label-group  {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-radius: 6px;
+  width: 250px;
+}
+   
+.form-control {
+  padding-top: 10px;
+  padding-bottom: 10px;
+} 
+
+.form-control {
+  padding: 4px 10px 4px 10px !important;
+  font-size: 13px !important;
+  height: 28px !important;
+}
+
+.form-title{
+  font-size: 13px;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+.form-contain{
+position: relative;
+left: 10%;
+}
+.button-contain{
+  position: relative;
+  left: 25%; 
+}
+ .background-img{
+  
+  height: 552px;
+} 
+
+
+.btn {
+ 
+  background-color: #ff009d;
+  padding: 4px 10px 4px 10px;
+  font-size: 12px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+a{
+  padding: 4px 10px 4px 10px;
+  font-size: 14px;
+}
+.table thead th {
+  vertical-align: bottom;
+  border-bottom: 1px solid #dee2e6;
+} 
+     
+    
+      

@@ -1,0 +1,21 @@
+{
+    "/api/*": {
+      "target": "http://novius-railtech.com/QMastService",
+      "secure": false,
+       "logLevel": "debug",
+       "changeOrigin": true
+    },
+
+    "/SizeControl/SizeControl/api/*": {
+      "target": "http://novius-railtech.com/QMastService",
+      "secure": false,
+       "logLevel": "debug",
+       "changeOrigin": true
+    },
+    "SizeControl/api/*": {
+      "target": "http://novius-railtech.com/QMastService",
+      "secure": false,
+       "logLevel": "debug",
+       "changeOrigin": true
+    }
+  }

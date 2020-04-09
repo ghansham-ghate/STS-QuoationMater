@@ -1,0 +1,46 @@
+.stripe{
+  width: 100%; height: 90px;
+  background:linear-gradient(to right, #33b8e8 0%,#3dceda 100%);
+}
+/* 
+form  {
+    background: #007bff;
+    
+  } */
+  .card  {
+    background-color: #f1f1f1;
+      }
+      /* .col-md-6{
+        background-color: #f1f1f1;
+      } */
+      .card-login {
+        border: 0;
+        border-radius: 8px;
+       }
+       
+       .card-login .card-title {
+        margin-bottom: 2rem;
+        font-size: 23px;
+        font-weight: 400;
+      }
+       .card-login .card-body {
+        padding: 2rem;
+      }
+      
+     /* .btn {
+        font-size: 80%;
+        border-radius: 5rem;
+        letter-spacing: .1rem;
+        font-weight: bold;
+        padding: 1rem;
+        transition: all 0.2s;
+      } */  
+       .form-label-group input {
+        height: auto;
+        border-radius: 6px;
+      }
+      .form-label-group{
+        margin-bottom: 20px;
+      }
+    
+      

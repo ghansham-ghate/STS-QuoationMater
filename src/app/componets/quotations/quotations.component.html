@@ -1,0 +1,521 @@
+<div  class="stripe">
+
+</div>
+
+<div class="col">
+  <div class="container">    
+<div *ngIf="!showQuotation || showHead">  
+  <div class="center">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a (click)="backToQuotation()">Quotation</a></li>
+      <li class="breadcrumb-item"><a >Quotation Form</a></li>
+      
+  </ol>
+    <!-- <div class="col"><button class="btn" (click)="backToQuotation()" style="position: relative;top: 10px;">Back</button></div> -->
+    <!-- <div class="col"><button class="btn" style="background-color: #808882; position: relative;top:10px ;" (click)="toggle()"  value="Create Quotation">Show Quotation</button></div> -->
+  </div> 
+<div *ngIf="!EditableQuotationRecipt" class="main-shadow-boxform">
+  <h4 class="form-title">Quotation Form</h4> 
+  <form [formGroup]="reactForm">
+    <div class="row">
+      <div class="col-4">
+      <div class="form-label-group ">
+        <label for="uname">Quotations No</label>
+        <input type="text"  class="form-control" value="{{quotationNumber}}" formControlName="nvcharQuotation_no" placeholder="Enter Quotations No" [ngClass]="{'is-invalid':reactForm.get('nvcharQuotation_no').touched && reactForm.get('nvcharQuotation_no').invalid}" readonly>  
+       <div class="invalid-feedback">
+       <div>Quotations No is required</div>
+       </div>
+       </div>
+
+       <div class="form-label-group" >
+        <label for="inputPassword" >Customer Name</label>
+        <select class="custom-select"  #t  formControlName="nvcharCust_name" id="selectcustomer" [ngClass]="{'is-invalid':reactForm.get('nvcharCust_name').touched && reactForm.get('nvcharCust_name').invalid}">
+         <option data-toggle="modal" data-target="#bd-example-modal-lg" value="">Choose Customer Name</option>
+         <option *ngFor="let c of customers" [value]="c.nvcharCust_name">{{c.nvcharCust_name}}</option>
+         </select>
+       <div class="invalid-feedback">
+        <div>Customer Name is required</div>
+        </div>
+      </div>
+   
+
+    <div class="form-label-group">       
+      <label for="inputPassword">Region Domestic International</label>
+      <select class="custom-select" formControlName="ynRegion_domestic_international" id="select"  [ngClass]="{'is-invalid':reactForm.get('ynRegion_domestic_international').touched && reactForm.get('ynRegion_domestic_international').invalid}">
+       <option value="">Choose Region Domestic OR Intern.</option>
+       <option value="true">Domestic</option>
+       <option value="false">International</option>
+     </select>
+
+         <div class="invalid-feedback">
+           <div>Region is required</div>
+           </div>
+   </div>
+
+   <div class="form-label-group" >
+    <label for="inputPassword">Item Category</label>
+       <select class="custom-select" (change)="getQuotationNo(item.value)" #item formControlName="intItem_category_id"  [ngClass]="{'is-invalid':reactForm.get('intItem_category_id').touched && reactForm.get('intItem_category_id').invalid}">
+         <option value="">Choose Item Category</option>
+         <option *ngFor="let itemC of itemCategory" value="{{itemC.intItem_category_id}}">{{itemC.nvcharItemCategoryName}}</option>
+       </select>
+      <div class="invalid-feedback">
+       <div>Item Category is required</div>
+       </div>
+     </div>
+    </div>
+<div class="col-4">
+     <div class="form-label-group " >
+      <label for="inputPassword">Region Name</label>
+      <select class="custom-select"  #t aria-placeholder="Choose Region"   formControlName="nvcharRegion_name" [ngClass]="{'is-invalid':reactForm.get('nvcharRegion_name').touched && reactForm.get('nvcharRegion_name').invalid}" >
+       <option value="" >Choose Region</option>
+       <option *ngFor="let r of regions" [value]="r.nvcharRegion_name" >{{r.nvcharRegion_name}}</option>
+      </select>
+        <div class="invalid-feedback">
+         <div>Region Name  is required</div>
+         </div>
+       </div>     
+       <div class="row">
+       <div class="form-label-group col-6" >
+         <label for="inputPassword"    >Currency Unit</label>
+         <select class="custom-select" class="form-control"    formControlName="nvcharCurrency_unit"  [ngClass]="{'is-invalid':reactForm.get('nvcharCurrency_unit').touched && reactForm.get('nvcharCurrency_unit').invalid}" >
+          <option value="" >Choose Currency Unit</option>
+          <option value="Rs">Rs</option>
+          <option value="$">$</option>
+          <option value="$">£</option>
+          <option value="$">€</option>
+        </select>
+       <div class="invalid-feedback">
+         <div>Currency Unit is required</div>
+       </div>
+        </div>
+
+        <div class="form-label-group col-6">
+          <label for="inputPassword"  >Unit Price</label>
+            <input type="number"   class="form-control"   formControlName="decCurrency_Value" placeholder="Enter Unit price" [ngClass]="{'is-invalid':reactForm.get('decCurrency_Value').touched && reactForm.get('decCurrency_Value').invalid}">
+            <div class="invalid-feedback">
+             <div>Unit price is required</div>
+             </div>
+           </div>
+       </div>
+           <div class="form-label-group">
+            <label for="date">Contact Name</label>
+                <input type='text' class="form-control"   formControlName="contactName" placeholder="Enter Contact Name" [ngClass]="{'is-invalid':reactForm.get('contactName').touched && reactForm.get('contactName').invalid}"/>
+                <div class="invalid-feedback">
+                  <div>Contact Name is required</div>
+                  </div>
+              </div>
+            
+              <div class="form-label-group">
+                <label for="date">Phone number</label>
+                    <input type='text' class="form-control"   formControlName="phone" placeholder="Enter Phone Number" [ngClass]="{'is-invalid':reactForm.get('phone').touched && reactForm.get('phone').invalid}"/>
+                    <div class="invalid-feedback">
+                      <div>Phone is required</div>
+                      </div>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="form-label-group">
+                    <label for="date">Email ID</label>
+                        <input type='text' class="form-control"  formControlName="email" placeholder="Enter Email" [ngClass]="{'is-invalid':reactForm.get('email').touched && reactForm.get('email').invalid}"/>
+                        <div class="invalid-feedback">
+                          <div>Email is required</div>
+                          </div>
+                      </div>
+             <div class="form-label-group">
+            <label for="date">Enquiry Date</label>
+                <input type='date' class="form-control"  class="form-control" formControlName="dtEnqDate" placeholder="Enter Enquiry Date" [ngClass]="{'is-invalid':reactForm.get('dtEnqDate').touched && reactForm.get('dtEnqDate').invalid}"/>
+                <div class="invalid-feedback">
+                  <div>Enquiry Date is required</div>
+                  </div>
+              </div>   
+
+              <div class="form-label-group">
+              <label for="date">Quotation Date</label>
+                 <input type='date' class="form-control" formControlName="dtQuoDate"  [ngClass]="{'is-invalid':reactForm.get('dtQuoDate').touched && reactForm.get('dtQuoDate').invalid}" />
+                 <div class="invalid-feedback">
+                    <div>Quotation Date is required</div>
+                 </div>
+             </div>
+            </div>
+  </div>
+  
+</form>  
+ <div class="btn-align pull-right">
+  <button *ngIf="!showHead" class="btn" type="submit"  [disabled]="reactForm.invalid" (click)="submitData(reactForm.value)">Next</button>
+</div>  
+
+  <!-- Update Item -->
+  <table *ngIf="showHead" class="table" id="mytable" style="margin-top: 50px;">
+    <thead class="thead-light">
+      <tr>
+        <th scope="col">Item Code</th>
+        <th scope="col">Description</th>
+        <th scope="col">Unit Price</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Amount</th> 
+        <th scope="col">Tax</th> 
+        <th scope="col">Discount</th> 
+        <th scope="col">Net Amount</th> 
+        <th scope="col">Delete</th>  
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let po of quotationDetailsWithitem;index as i" id="{{i}}" >
+        <td>{{po.nvcharItem_code}}</td>
+        <td>{{po.nvcharItem_description}}</td>
+        <td><input type="number" style="width: 100%;" value="{{po.decUnit_price}}" #unitprice (input)="calcuateTaxAndDiscountDetais(po.intItem_id,unitprice.value,quantity.value,discount.value,tax.value,i)"></td>
+        <td><input type="number" style="width: 100%;" placeholder="" #quantity value="{{po.decQuantity}}" (input)="calcuateTaxAndDiscountDetais(po.intItem_id,unitprice.value,quantity.value,discount.value,tax.value,i)"></td>
+        <td><input type="number" style="width: 100%;" placeholder="total amount" id="baseAmount" value="{{po.decAmount}}" (input)="calcuateTaxAndDiscountDetais(po.intItem_id,unitprice.value,quantity.value,discount.value,tax.value,i)"></td>
+        <td><input type="number" style="width: 100%;" placeholder="Tax in peecentage" #tax value="{{po.decTax_add}}" (input)="calcuateTaxAndDiscountDetais(po.intItem_id,unitprice.value,quantity.value,discount.value,tax.value,i)"></td>
+        <td><input type="number" style="width: 100%;" placeholder="Discount in percentage" #discount value="{{po.NvcharDescription}}" (input)="calcuateTaxAndDiscountDetais(po.intItem_id,unitprice.value,quantity.value,discount.value,tax.value,i)"></td>
+        <td><input type="number" style="width: 100%;" placeholder="Discount in percentage"  id="netAmount"  value="{{po.decNet_amount.toFixed(2)}}"></td>
+        <td><img src="assets\images\delete.svg" alt="delete" height="16px" width="16px" style="cursor: pointer;" (click)="deleteItemToEditableQuotation(i)"></td>
+      </tr>
+    </tbody>
+ 
+  </table>
+  <div class="edit-quotation-buttons ">
+    <button *ngIf="showHead"  class="btn" style="margin: 5px; font-size: 12px;" (click)="showQuotationReceipt()">View Quotation</button>
+  <button *ngIf="showHead"  data-toggle="modal" style="font-size: 12px;" data-target=".bd-example-modal-sm" class="btn ">Add Item</button>
+  <button *ngIf="showHead"  class="btn" style="margin: 5px; font-size: 12px;" (click)="insertUpdatedQuotation()">Submit</button>
+  
+  
+</div>
+
+
+    </div>
+    </div>
+    </div>
+
+    <div *ngIf="EditableQuotationRecipt" class="quotation-recipt container">
+      <div class="main-shadow-recipt">
+      <div class="row dow-print">
+        <div class="col pull-left">
+          <span class="pull-right" style="margin-left:15px ;"><img src="assets\images\download.svg" style="margin: 5px;"    alt="download" height="20px" width="25px"  >download</span>
+          <span class="pull-right" ><img src="assets\images\print.svg" style="margin: 5px;" (click)="printTest()" alt="print" height="20px" width="25px">Print</span>
+    
+        </div>
+        </div>
+
+    
+    <div class="quotation-final-recipt" id="test"  style="padding: 20px;">
+    <div class="row ">
+      <div class="col">
+       </div>
+      <div class="col">
+        <div class="pull-right" >
+          <img src="assets\images\size_control_logo.webp" alt="" height="40px" >
+        </div>
+    </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <div class="add-cust header" style="width: 40%;">
+        <span>To,</span>
+        <p><span>{{customerName}}</span><br>
+           {{customerAddress}}
+        </p>
+      </div>
+      <br>
+      <br>
+      <br>
+        <div>
+        <tr style="border: none;">
+          <th style="border: none; padding: 0px; margin: 0px;" scope="row">PHONE<span style=" padding:0px 10px 0px 60px;">:</span></th>
+          <td style="border: none; padding: 2px;font-size: 14px;">{{billedQuotation.NvcharDescription.split(',')[0]}}</td>
+        </tr>
+        <tr>
+        <th style="border: none; padding: 0px;"  scope="row">EMAIL ID <span style=" padding:0px 0px 0px 46px;">:</span></th>
+        <td style="border: none; padding: 2px;font-size: 14px;">{{billedQuotation.NvcharDescription.split(',')[2]}}</td>
+      </tr>
+      <!-- <tr>
+        <th style="border: none; padding: 0px;" scope="row">YOUR ENQUIRY<span style=" padding:0px 0px 0px 14px;">:</span></th>
+        <td style="border: none; padding: 2px;">{{quotation.yourEnquiry}}</td>
+      </tr> -->
+      <tr>
+        <th style="border: none; padding: 0px;" scope="row">ENQUIRY DATE<span style=" padding:0px 0px 0px 14px;">:</span></th>
+        <td style="border: none; padding: 2px;font-size: 14px;">{{billedQuotation.dtEnqDate}}</td>
+      </tr>
+      <tr>
+        <th style="border: none; padding: 0px;" scope="row">CONTACT NAME<span style=" padding:0px 0px 0px 10px;">:</span></th>
+        <td style="border: none; padding: 2px;font-size: 14px;">{{billedQuotation.NvcharDescription.split(',')[1]}}</td>
+      </tr>
+    
+      </div>
+      </div>
+    
+      <div class="col">
+        <div class="pull-right">
+        <div class="company-add ">
+          <p>Plot No. 100-101,Tiny Industrial Co-op Estate Ltd. <br>
+            Pisoli Road, Kondhwa (Bk.) Pune-411 048, Maharashtra India.  <br>
+            Ph.: 0202 - 65220146, 9595670836   <br>
+            Fax: 020 - 26930119 <br>
+            E-mail: marketing@sizecontrolgauges.com
+          </p>
+        </div>
+        <tr>
+          <th style="border: none;padding: 2px;" scope="row">QUOTATION NO.<span style=" padding:0px 10px 0px 8px;">:</span> </th>
+          <td  style="border: none;padding: 2px;font-size: 14px;">{{updatedQuotation.nvcharQuotation_no}}</td>
+        </tr>
+        <tr>
+          <th style="border: none;padding: 2px;" scope="row">DATE<span style=" padding:0px 0px 10px 71px;">:</span></th>
+          <td style="border: none;padding: 2px;font-size: 14px;">{{updatedQuotation.dtQuoDate}}</td>
+        </tr>
+        <div><p style="font-size: 13px;">REPLY AT PUNE <br> QF/SM/01</p></div>
+      </div>
+      </div>
+    </div>
+    <div class="discription">
+      <span style=" padding:0px 0px 0px 0px;">Dear Sir,</span>
+        <p style=" padding:0px 0px 0px 25px;">We thank you for you above referred enquiry and take  pleasure in quoting as under. </p>
+    </div>
+    <div class="quotation-detail">
+      <table style = "margin:auto"  class="table">
+        <thead class="thead-color">
+          <tr>
+            <th scope="col">Sr.No</th> 
+            <th scope="col">Size Control Make Precision Gauges</th>
+            <th scope="col">qty.</th>
+            <th scope="col">Price Each RS.</th>  
+            <th scope="col">Discount</th>  
+            <th scope="col">Total Price</th>  
+            <th scope="col">Del. week</th> 
+    
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let itemDetail of quotationDetailsWithitem;index as i">
+            <td>{{i+1}}</td>
+            <td>{{itemDetail.mstItemnvcharItem_name}} ({{itemDetail.nvcharItem_description}})</td>
+            <td>{{itemDetail.decQuantity}}</td>
+            <td>{{itemDetail.decUnit_price}}</td>
+            <td>{{itemDetail.NvcharDescription}}</td>
+            <td>{{itemDetail.decNet_amount.toFixed(2)}}</td> 
+            <td>REGRAT</td>
+          
+           </tr>
+         
+           <th colspan="5">Blank Design WILL BE TO IS <span class="align-right">Total Price </span> </th>
+           <td>{{billedQuotation.decTotal_amount.toFixed(2)}}</td>
+           <td></td>
+        </tbody>
+      </table>
+    </div>
+  <br>
+  <br>
+  <br>
+    <div class="row">
+      <div class="col">
+        <div class="terms-condition-title">
+          <span>Terms And Condition</span>
+        </div>
+       <div class="terms-condition">
+        <div style="margin-top: -2px;">
+          <span style="border: none;padding: 0px; " scope="row">Packing & Forwording- </span>
+          <span  style="border: none;padding: 0px;  font-weight: 400;">Courier Charges at actual</span>
+        </div>
+        <div style="margin-top: -2px;">
+          <span style="border: none;padding: 0px;" scope="row">Price- </span>
+          <span  style="border: none;padding: 0px;  font-weight: 400;">Ex-our work,Ahmednagar</span>
+        </div>
+        <div style="margin-top: -2px;">
+          <span style="border: none;padding: 0px;" scope="row">Excise- </span>
+          <span  style="border: none;padding: 0px;  font-weight: 400;">Extra SGST @ 8% Or As Aplicable</span>
+        </div> 
+        <div style="margin-top: -2px;">
+          <span style="border: none;padding: 0px;" scope="row">Taxes- </span>
+          <span  style="border: none;padding: 0px; font-weight: 400;">Extra CGST @ 9% Or As Aplicable</span>
+        </div> 
+        <div style="margin-top: -2px;">
+          <span style="border: none;padding: 0px;" scope="row">Payment- </span>
+          <span style="border: none;padding: 0px;  font-weight:400;">Within 30 Days</span>
+        </div>
+        <div style="margin-top: -2px;">
+          <span style="border: none;padding: 0px;" scope="row">Validity- </span>
+          <span  style="border: none;padding: 0px;  font-weight: 400;">60 Day's</span>
+        </div>
+      </div>
+      </div>
+      <div class="col area-sign">
+        <div class="pull-right sign-area">
+      <div>
+        <p class="message-call">Thanking you  and  awaiting your valued order.</p>
+        <p style="text-align: center;">Your faithfully </p>
+      </div>
+      <div class="company-name">
+        <span>For Size Control Gauges & Tools Pvt. Ltd</span>
+        </div>
+        <div><p style="text-align: center;">{{billedQuotation.intItem_category_id}}<br>
+        Director</p></div>
+      </div>
+      </div>
+    
+    </div>
+    
+   
+   </div>
+ 
+   </div>
+    </div>
+
+
+
+
+      <div class="container" *ngIf="showQuotation">
+        <div  *ngIf="!showHead && showQuotation " class="row">
+          <div class="col pad-top-bot"> 
+            <input type="text" placeholder="Search Of Quotations No" class="form-control" [(ngModel)]="searchTerm"  name="search"> 
+          </div> 
+          <div class="col pad-top-bot"></div>
+          <div *ngIf="showQuotation" class="col pad-top-bot " >
+            <div class="pull-right">
+            <button class="btn " (click)="toggle()"  value="Create Quotation">Create Quotation</button>
+          </div>
+          </div> 
+
+        </div>
+
+
+        <div *ngIf="showQuotation && !showHead" class="main-shadow-box">
+        <table *ngIf="!showHead && showQuotation" >
+          <thead class="thead-light">
+            <tr>
+              <th scope="col">Quotations No</th> 
+              <th scope="col">Customer Name</th>
+              <th scope="col">Region Name</th>
+              <th scope="col">Category</th>
+              <th scope="col">Edit</th>
+              <th scope="col">Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let q of quotation |filter:searchTerm | paginate:{itemsPerPage:5, currentPage:p}; index as i"   >
+              <td>{{q.nvcharQuotation_no}}</td>
+              <td>{{q.mstCustomernvcharCust_name}}</td>
+              <td>{{q.mstRegionnvcharRegion_name}}</td>
+              <td>{{q.mstItemCategorynvcharItemCategoryName}}</td>
+              <td><img src="assets\images\edit.svg" (click)="UpdateData(q,q.intQuotation_id)" alt="edit" height="16px" width="16px"></td>
+              <td><img src="assets\images\delete.svg" (click)=" DeleteQuotation(q)" alt="delete" height="16px" width="16px"></td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="pull-right ngx-pagination"><pagination-controls *ngIf="!showHead && showQuotation" class="pagination1" (pageChange)="p =$event"></pagination-controls></div>
+       
+      
+      
+      
+      </div>
+   
+     
+       </div>
+
+
+
+     
+
+      </div>
+
+   
+     
+
+      <div class="modal fade bd-example-modal-sm selectItem" id="item-pricing-modal" tabindex="-1" role="dialog"  aria-labelledby="myLargeModalLabel" aria-hidden="true"  >
+        <div class="modal-dialog modal-sm">
+          <div class="modal-content">
+            <div class="add-item">
+            <div class="form-label-group" style="width: 250px;" >
+              <label for="inputPassword">Item Name</label>
+                 <select #itemname class="custom-select" >
+                   <option value="">Choose Item name</option>
+                   <option value="{{i}}"  *ngFor="let it of items;index as i">{{it["nvcharItem_name"]}}</option>
+                 </select>
+                 <div class="pull-right pricing-btn" >
+              
+                 <button  id="showPricingModel" style="margin: 5px;"  class="btn " data-toggle="modal" data-dismiss="modal" data-target=".fillDetails" id="fillModal" data-backdrop="static" data-keyboard="false" (click)="fillModal(itemname.value)">See pricing</button>
+               </div>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!--modal to see product pricing details-->
+
+<div  class="modal fade bd-example-modal-lg fillDetails" id="pricingDetailModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+     <div>
+         
+          <div class="tableclass" style="overflow-x:auto;">
+          <table class="table table-bordered item-table">
+            <tbody >
+             
+              <tr *ngFor="let col of pricingColumns">
+               <td  *ngFor="let col1 of col;index as i"><input   type="text" style="width: 100%;min-width: 50px; border: 0px;" value="{{col1}}" #priceValue data-dismiss="modal" data-toggle="modal" data-target=".fillDetails" (click)="submitItemDetails(priceValue.value,i,pricingColumns,intItem_id,nvcharItem_code,nvcharItem_description)"    fill-value="" cell-value="NA" #cellValue></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        </div>
+      <div class="modal-footer">
+        <div class="pull-right">
+        <button type="button" class="clear-btn" data-dismiss="modal" id="closeModal" data-toggle="modal" data-target=".confirmModel">Close</button>
+        <button type="button" class="submit-btn" style="margin: 5px;"   data-dismiss="modal" >Submit</button>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div  class="modal fade confirmModel" data-backdrop="static" data-keyboard="false" >
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div >
+        
+        <p id="priceMessage"  style="margin-top: 2px; font-size: 15px;text-align: center;"></p>
+        <label for="unmae">Description</label>
+        <input type="text" class="form-control" [(ngModel)]="productDescription"  style="width: 100%;" [value]="productDescription" > 
+        
+        
+        <form [formGroup]="reactFormForTax" >        
+          <div >
+             <div>
+  
+                  <div class="form-label-group">
+                       <label for="uname">Enter Quantity</label>
+                       <input type="number" class="form-control" formControlName="Quantity" placeholder="Enter Quantity" style="width: 100%;"  #Quantity >  
+                       <div class="invalid-feedback">
+                        <div>Quantity is required</div>
+                        </div> 
+                      </div>
+              
+                      <div class="form-label-group">
+                        <label for="inputPassword">Enter Discount in Percentage</label>
+                        <input type="number" class="form-control"  formControlName="discount" placeholder="Enter discount in Percentage" style="width: 100%;"  #discount>  	
+                        <div class="invalid-feedback">
+                         <div>Discount is required</div>
+                         </div>
+                       </div>  
+
+                       <div class="form-label-group">
+                       <label for="inputPassword">Enter Tax in Percentage</label>
+                       <input type="number" class="form-control" formControlName="tax" placeholder="Enter Tax in Percentage" style="width: 100%;"   #tax>
+                       <div class="invalid-feedback">
+                        <div>Tax is required</div>
+                        </div>
+                      </div>
+                                          
+                   </div>
+                  </div>
+                  <br>
+                  
+               </form>
+               
+              <div class="modal-footer">
+                <button type="button" class="btn-close" data-dismiss="modal">Close</button>    
+                <button class="btn" [disabled]="reactFormForTax.invalid"  (click)="addItemToQuotation(Quantity.value,tax.value,discount.value)" data-dismiss="modal">Add</button>  
+             </div>
+    </div>
+  </div>
+  </div>
+</div>

@@ -1,0 +1,95 @@
+<div  class="stripe">
+
+</div>
+<div class="container"> 
+ 
+<div>
+  <div *ngIf="!showData" class="row">
+   <div  class="col pad-top-bot">
+    <input type="text" placeholder="Search Of Quot. No." class="form-control" [(ngModel)]="searchTerm"  name="search"> 
+  </div> 
+  <div class="col"></div>
+  <div class="col"></div>
+  <!-- <div class="col-md-2" style="margin-top: 10px;">
+    <button class="btn btn-primary" (click)="getPONumber()" >Search</button>
+  </div> -->
+  </div>
+  <div *ngIf="!showData" class="main-shadow-box">
+  
+<table *ngIf="!showData" class="table" id="mytable">
+    <thead class="thead-color">
+      <tr>
+        <th scope="col">Region Name</th>
+        <th scope="col">Quot. No.</th>
+        <th scope="col">Quot. Date</th>
+        <th scope="col">Party Name</th>
+        <th scope="col">Amount</th>
+        <th scope="col">Edit</th>
+    
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let po of quotation |filter:searchTerm | paginate:{itemsPerPage:5, currentPage:p};index as i" [attr.name]="po.nvcharRegion_name">
+        <th scope="row">{{po.mstRegionnvcharRegion_name}}</th>
+        <td>{{po.nvcharQuotation_no}}</td>
+        <td>{{po.dtQuoDate | date }}</td>
+        <td>{{po.mstCustomernvcharCust_name}}</td>
+        <td>{{po.decTotal_amount}}</td>
+        <td><img src="assets\images\edit.svg" (click)="editPoData(po.intQuotation_id,po)" alt="edit" height="20px" width="20px"></td>
+       
+      </tr>
+    </tbody>
+  </table>
+
+<div class="pull-right ngx-pagination">
+  <pagination-controls *ngIf="!showData" class="pagination1" (pageChange)="p =$event"></pagination-controls>
+</div> 
+</div>
+<div *ngIf="showData" class="main-shadow-boxform">
+  <div *ngIf="showData" class="center">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a style="  font-size: 15px;" (click)="backToPOList()">PO List</a></li>
+      <li class="breadcrumb-item"><a style="  font-size: 15px;">Edit PO</a></li>
+      
+  </ol>
+  </div>
+  <table *ngIf="showData" class="table" id="mytable" >
+    <thead class="thead-color">
+      <tr>
+        <th scope="col">Item Code</th>
+        <th scope="col">Item Description</th>
+        <th scope="col">Unit Price</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Amount</th>
+        <th scope="col">Enter Received Quantity</th>
+        <!-- <th scope="col">PO Received Date</th> -->
+       
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let po of quotationDetailsWithitem;index as i" >
+        <td>{{po.nvcharItem_code}}</td>
+        <td>{{po.nvcharItem_description}}</td>
+        <td><input type="number" style="width: 100%;" value="{{po.decUnit_price.toFixed(2)}}"></td>
+        <td><input type="number" style="width: 100%;" value="{{po.decQuantity}}"></td>
+        <td><input type="number" style="width: 100%;" value="{{po.decAmount.toFixed(2)}}"></td>
+        <td><input type="number" style="width: 100%;" #upDatedQuatity (input)="0" ></td>
+        <td style="display: none;"  id="{{i}}">{{upDatedQuatity.value}}</td>
+        <!-- <td><input type="date" #poReceivedDate></td> -->
+      </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="showData">
+    <label for="uname">Enter PO Number :-  </label>
+    <input type="text" #nvcharPONumber>
+    <label for="" style="margin: 5px;" >PO Date:-</label>
+    <input type="date" #dtPoDate>
+   <div> 
+     <button class="btn pull-right"  style="color: #ffff;" (click)="submitPoData(nvcharPONumber.value,dtPoDate.value)">Submit</button>
+   </div>
+</div>
+</div>
+</div>
+</div>
+

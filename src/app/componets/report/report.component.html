@@ -1,0 +1,136 @@
+<div  class="stripe">
+
+</div>
+<div class="container">
+  <div class="main-shadow-box"> 
+    <form action=""> 
+    <div class="row">
+    <div class="col">
+      <div class="form-label-group">
+        <label for="report">Report Type</label>
+        <select class="custom-select"  #reportType (change)="setReportType(reportType.value)" required="required">
+          <option value="0" >Choose Report </option>
+          <option *ngFor="let report of ReportTypeArray" value="{{report}}">{{report}}</option> 
+      </select>
+      </div>  
+    </div>
+    <div class="col">
+      <div class="form-label-group">
+        <label for="report">Region</label>
+        <select #sel id="regionreset" class="custom-select"   required="required">
+          <option value="0" >Choose Region </option>
+          <option value="{{r.intRegion_id}}"  *ngFor="let r of region" >{{r.nvcharRegion_name}}</option>
+     </select>  
+        </div>
+    </div>
+    <div class="col">
+      <div class="form-label-group">
+        <label for="report">From Date</label>
+        <input type="date" class="form-control" #fromDate required="required">
+     </div>
+    </div>
+    <div class="col">
+      <div class="row">
+      <div class="form-label-group col-8">
+        <label for="report">To Date </label>
+        <input type="date" class="form-control" #toDate required="required">
+     </div>
+     <div class="col-4" style="position: relative; top: 35px;">
+      <button class="btn " (click)="filterRegion(fromDate.value,toDate.value,sel.value,reportType.value);" style="color: #ffffff;" >Filter</button>
+    </div>
+    </div>
+    </div>
+    
+  
+  
+   </div>
+  </form>
+<div>
+<table class="table" *ngIf="showTable==='PO Report'  && allFilterSet;">
+    <thead class="thead-light">
+      <tr>
+        
+        <th scope="col">Region Name</th> 
+        <th scope="col">Quotation No.</th>
+        <th scope="col">Enq. Date</th>
+        <th scope="col">Quotation Date</th>
+        <th scope="col">Day Diff.</th>
+        <th scope="col">Party Name</th>
+        <th scope="col">Amount</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let q of quotation">
+        <td>{{q.mstRegionnvcharRegion_name}}</td>
+        <td>{{q.nvcharQuotation_no}}</td>
+        <td>{{q.dtEnqDate |date: 'dd-MM-yyyy'}}</td>
+        <td>{{q.dtQuoDate |date: 'dd-MM-yyyy'}}</td>
+        <td>{{q.NvcharDescription}}</td>
+        <td>{{q.mstCustomernvcharCust_name}}</td>
+        <td>{{q.decTotal_amount}}</td>
+        <!-- [value]="{{c.Cust_name}}" -->
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div>
+    <table *ngIf="showTable==='PO Receive' && allFilterSet" class="table">
+        <thead class="thead-light">
+          <tr>
+            
+            <th scope="col">Region</th> 
+            <th scope="col">Quotation No.</th>
+            <th scope="col">Quotation Date</th>
+            <th scope="col">PO Date</th>
+            <th scope="col">PO No.</th>
+            <th scope="col">Party Name</th>
+            <th scope="col">Amount</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let q of quotation">
+            <td>{{q.mstRegionnvcharRegion_name}}</td>
+            <td>{{q.nvcharQuotation_no}}</td>
+            <td>{{q.dtQuoDate|date}}</td>
+            <td>{{q.dtPoDate|date}}</td>
+            <td>{{q.nvcharPONumber}}</td>
+            <td>{{q.mstCustomernvcharCust_name}}</td>
+            <td>{{q.decTotal_amount}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div>
+        <table *ngIf="showTable==='Quotation Pending' && allFilterSet" class="table">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col">Region Name</th> 
+                <th scope="col">Part Name</th>
+                <th scope="col">Quotation Qty</th>
+                <th scope="col">Quot Value</th>
+                <th scope="col">PO Qty</th>
+                <th scope="col">PO Value</th>
+                <th scope="col">Pend Qty</th>
+                <th scope="col">Pend Value</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let quot of quotationDetail">
+                <td>{{quot.mstRegionnvcharRegion_name}}</td>
+                <td>{{quot.mstCustomernvcharCust_name}}</td>
+                <td>{{quot.decQuantity}}</td>
+                <td>{{quot.decUnit_price}}</td>
+                <td>{{quot.decPo_received_quantity}}</td>
+                <td>{{quot.decPo_price}}</td>
+                <td>{{quot.decPo_pending_quantity}}</td>
+                <td>{{quot.decPo_remaining_price}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        </div>
+        </div>
+        
+    
