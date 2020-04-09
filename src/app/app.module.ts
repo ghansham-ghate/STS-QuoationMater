@@ -33,6 +33,7 @@ import {Ng2SearchPipeModule} from 'ng2-search-filter';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { ReportComponent } from './componets/report/report.component';
+import { TermsAndConditionsComponent } from './componets/terms-and-conditions/terms-and-conditions.component';
 
 
 @NgModule({
@@ -48,6 +49,7 @@ import { ReportComponent } from './componets/report/report.component';
     ProductComponent,
     PagenotfoundcomponentComponent,
     ReportComponent,
+    TermsAndConditionsComponent,
     
     
     

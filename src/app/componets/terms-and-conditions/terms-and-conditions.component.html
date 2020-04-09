@@ -1,0 +1,19 @@
+<div class="card" style="width: 18rem;">
+    <h6 class="card-title" style="margin-left: 5px;">Terms and Conditions</h6>
+    <div class="card-body">
+        <table >
+            <tbody>
+                <tr *ngFor="let d of data">
+                    <td style="padding: 5px;">{{d.index}}.</td>
+                    <td><input type="text" class="form-control" #con (input)="addCondition(con.value,d.index)" style="margin-left: 5px;" placeholder="Enter condition"></td>
+                </tr>
+                <tr style="margin-top: 10px;">
+                    <td style="padding: 5px; margin-left: 5px;"> </td>
+                    <td><button style="padding: 5px;" type="button" class="btn" (click)="addRow()">Add</button>
+                    <button style="padding: 5px;margin-left: 5px; " type="button" class="btn" (click)="removeRow()">Remove</button></td>
+                </tr>
+            </tbody>
+        </table>
+      
+    </div>
+</div>
