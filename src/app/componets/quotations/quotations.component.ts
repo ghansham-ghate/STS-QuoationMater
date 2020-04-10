@@ -203,6 +203,7 @@ export class QuotationsComponent implements OnInit {
 
      this.reactForm.controls['dtEnqDate'].setValue(Quotation.dtEnqDate.substring(0,10));
      this.reactForm.controls['dtQuoDate'].setValue(Quotation.dtQuoDate.substring(0,10))
+     this.termAndConditionString=Quotation.NvcharTermsandCond;
      this.editPoData(Quotation_id);
      this.showHead = true;
      this.showQuotation=true;
@@ -368,7 +369,7 @@ console.log("item details in quotation",this.quotationDetailsWithitem)
       }
      }
      
-  this.quotationservice.setTempQuotationForUpdate(this.reactForm.value,Cust_id,Region_id,this.reactForm.controls["nvcharQuotation_no"].value);
+  this.quotationservice.setTempQuotation(this.reactForm.value,Cust_id,Region_id,this.reactForm.controls["nvcharQuotation_no"].value,this.termAndCondition);
   let qout:Quotation=this.quotationservice.quotation;
   qout.NvcharDescription=detailString;
   this.billedQuotation=qout;
