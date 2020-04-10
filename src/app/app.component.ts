@@ -16,7 +16,7 @@ export class AppComponent {
   constructor(private router: Router,private authService:AuthService) {
 
       router.events.forEach((event) => {
-        console.log("Inside router events")
+      
 
           if (!this.authService.isAuthenticated()) {
             this.showHead = true;

@@ -14,7 +14,7 @@ export class TermsAndConditionsComponent implements OnInit,OnChanges {
   @Input()
   count:number=1;
   @Input()
-  data:tabledata[]=[{index:1,value:""}];
+  data:tabledata[]=[{index:1,value:""+this.count+"."}];
   
   @Input() updateTerms:string="notUpdate";
   @Output() sendData : EventEmitter <tabledata[]> = new EventEmitter<tabledata[]>();
@@ -34,6 +34,7 @@ export class TermsAndConditionsComponent implements OnInit,OnChanges {
         this.data.push({index:this.count,value:terms[i]});
         this.count+=1;
       }
+      this.count-=1;
       this.sendData.emit(this.data)
     }
   }
@@ -41,10 +42,11 @@ export class TermsAndConditionsComponent implements OnInit,OnChanges {
   addRow()
   {
     this.count+=1;
-    this.data.push({index:this.count,value:""});
+    this.data.push({index:this.count,value:""+this.count+"."});
   }
   addCondition(condition,index)
   {
+     
      this.data[index-1].value=condition;
      this.sendData.emit(this.data)
   }

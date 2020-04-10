@@ -5,9 +5,8 @@
             <tbody>
                 <tr *ngFor="let d of data">
                     <td style="padding: 5px;">{{d.index}}.</td>
-                    <td *ngIf="d.value"><input type="text" class="form-control" #con value="{{d.value}}" (input)="addCondition(con.value,d.index)" style="margin-left: 5px;" placeholder="Enter condition"></td>
-                    <td *ngIf="!d.value"><input type="text" class="form-control" #con1  (input)="addCondition(con1.value,d.index)" style="margin-left: 5px;" placeholder="Enter condition"></td>
-  
+                    <td ><input type="text" id="input1" class="form-control" #con value="{{d.value}}" (input)="addCondition(con.value,d.index)" style="margin-left: 5px;" placeholder="Enter condition"></td>
+                    
                 </tr>
                 <tr style="margin-top: 10px;">
                     <td style="padding: 5px; margin-left: 5px;"> </td>

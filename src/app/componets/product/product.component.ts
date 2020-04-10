@@ -7,10 +7,9 @@
   import {Quotation} from '../../Models/Quoatation.model';
   import {Item} from '../../Models/Item.model';
   import {ItemCategory} from '../../Models/ItemCategory.modal';
- import {QuotationDetail} from '../../Models/QuotationDetail.model';
-import { ToastrService } from 'ngx-toastr';
-import * as $ from 'jquery';
-import { element } from 'protractor';
+  import {QuotationDetail} from '../../Models/QuotationDetail.model';
+  import { ToastrService } from 'ngx-toastr';
+  import {generatePdf} from '../../pdfGenerator/pdf.js';
   @Component({
     selector: 'app-product',  
     templateUrl: './product.component.html',
@@ -50,6 +49,7 @@ import { element } from 'protractor';
     quotationDetail:QuotationDetail[];
     customer_address=window.localStorage.getItem("customer_address"); 
     customer_name=window.localStorage.getItem("customer_name");
+    item_owner=window.localStorage.getItem("item_owner");
     reactForm = new FormGroup({
       intItem_id:new FormControl(''),
       nvcharItem_code: new FormControl('',Validators.required),
@@ -368,6 +368,7 @@ insertQuotationToQuotationMaster(){
     console.log(data);
     console.log("Item with details qout",this.itemWithPriceDetails);
     // this.router.navigate(['/quotation']);
+    generatePdf(this.itemElements,this.quotation,this.customer_name,this.customer_address,this.item_owner);
     this.toastr.success('Quotation Submit Successfully!', ' ',{positionClass: 'toast-bottom-right'});
   }) 
   })

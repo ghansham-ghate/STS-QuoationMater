@@ -3,4 +3,5 @@ export class ItemCategory{
     intUser_id:number;
     nvcharItemCategoryName:string;
     nvcharItemCategorySequenceNoPrefix:string;
+    NvcharDescription:string;
 }

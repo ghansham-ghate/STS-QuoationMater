@@ -122,6 +122,13 @@ export class QuotationsComponent implements OnInit {
         window.localStorage.setItem("customer_name",this.customers[i].nvcharCust_name);
        }
      }
+     for(let i=0;i<this.itemCategory.length;i++)
+     {
+       if(this.itemCategory[i].intItem_category_id==this.reactForm.controls['intItem_category_id'].value)
+       {
+        window.localStorage.setItem("item_owner",this.itemCategory[i].NvcharDescription);
+       }
+     }
      for(let i=0;i<this.regions.length;i++)
      {
        console.log(this.regions[i].nvcharRegion_name,this.regions);
