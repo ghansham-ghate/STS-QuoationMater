@@ -203,7 +203,7 @@ export class QuotationsComponent implements OnInit {
 
      this.reactForm.controls['dtEnqDate'].setValue(Quotation.dtEnqDate.substring(0,10));
      this.reactForm.controls['dtQuoDate'].setValue(Quotation.dtQuoDate.substring(0,10))
-     this.termAndCondition=Quotation.NvcharTermsandCond;
+     this.termAndConditionString=Quotation.NvcharTermsandCond;
      this.editPoData(Quotation_id);
      this.showHead = true;
      this.showQuotation=true;
