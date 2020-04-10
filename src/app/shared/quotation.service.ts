@@ -57,7 +57,7 @@ export class QuotationClass{
       {
          condition=condition+termsAndcondition[i].value+",";
       }
-      condition=condition+termsAndcondition[termsAndcondition.length-1].value+",";
+      condition=condition+termsAndcondition[termsAndcondition.length-1].value;
       this.quotation=quotation;
       this.quotation.nvcharQuotation_no=quoatationNumber;
       this.quotation.intRegion_id=region_id; 

@@ -15,8 +15,8 @@ export class TermsAndConditionsComponent implements OnInit,OnChanges {
   count:number=1;
   @Input()
   data:tabledata[]=[{index:1,value:""}];
-  @Input()
-  updateTerms:string="notUpdate";
+  
+  @Input() updateTerms:string="notUpdate";
   @Output() sendData : EventEmitter <tabledata[]> = new EventEmitter<tabledata[]>();
   constructor() { }
 
@@ -51,5 +51,6 @@ export class TermsAndConditionsComponent implements OnInit,OnChanges {
   {
     this.count=this.count-1;
     this.data.pop();
+    this.sendData.emit(this.data);
   }
 }
